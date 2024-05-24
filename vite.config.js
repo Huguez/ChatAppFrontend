@@ -10,5 +10,12 @@ export default defineConfig( ( { mode } ) => {
       'process.env': env
     },
     plugins: [react()],
+    resolve: {
+      alias:{
+        "@": "/src",
+        // "@/components": "/src/components",
+        // "@/pages": "/src/pages"
+      }
+    }
   }
 } )

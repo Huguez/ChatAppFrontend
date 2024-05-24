@@ -1,9 +1,10 @@
+import { MainRouter } from "./router/MainRouter";
 
 function ChatApp() {
 
   return (
     <>
-      Hello World!!
+      <MainRouter />
     </>
   )
 }
