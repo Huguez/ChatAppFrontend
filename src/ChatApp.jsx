@@ -1,10 +1,12 @@
 import { MainRouter } from "./router/MainRouter";
-import { AuthProvider } from "@/context"
+import { AuthProvider, SocketProvider } from "@/context"
 
 function ChatApp() {
 	return <>
 		<AuthProvider>
-			<MainRouter />
+			<SocketProvider>
+				<MainRouter />
+			</SocketProvider>
 		</AuthProvider>
 	</>
 }

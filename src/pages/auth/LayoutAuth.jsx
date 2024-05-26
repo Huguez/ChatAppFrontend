@@ -12,7 +12,7 @@ export const LayoutAuth = () => {
    }, [verifyToken] )
 
    if ( user.uid ) {
-      return <Navigate to="/" />
+      return <Navigate to="/chat" />
    }
 
    return (

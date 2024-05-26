@@ -13,8 +13,6 @@ export default defineConfig( ( { mode } ) => {
     resolve: {
       alias:{
         "@": "/src",
-        // "@/components": "/src/components",
-        // "@/pages": "/src/pages"
       }
     }
   }
