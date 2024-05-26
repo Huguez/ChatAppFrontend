@@ -18,8 +18,7 @@ export const useSocket = () => {
 
 export const SocketProvider = ( props ) => {
 
-    const { socket, online, connectSocket, disconnectSocket } = useInitSocket( socketUrl );
-    
+    const { socket, online, connectSocket, disconnectSocket } = useInitSocket( socketUrl );    
     const { user } = useAuth()
 
     useEffect( () => {
@@ -29,13 +28,17 @@ export const SocketProvider = ( props ) => {
         }
     }, [ user ] )
 
-
-
     useEffect( () => {
         if ( !user.uid ) {
             disconnectSocket()
         }
     }, [ user ] )
+
+    useEffect( () => {
+        socket?.on( "list-users", ( users ) => {
+            console.log( users );
+        } )
+    }, [ socket ] )
 
     return (
         <SocketContext.Provider value={{ socket, online }} { ...props } />
