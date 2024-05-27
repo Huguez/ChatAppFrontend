@@ -1,18 +1,27 @@
 import React from 'react'
+import { typesChat } from "@/types";
+import moment from "moment"
+import { useChat } from '@/context'
 
 export const ChatItem = ( props ) => {
-   const { nickname, updatedAt, online, email } = props
+   const { uid, nickname, updatedAt, online } = props
+
+   const { chatState:{ currentChat }, dispatch } = useChat()
+
+   const handleSelect = () => {
+      dispatch( { type: typesChat.selectChat, payload: { chat: uid } } )
+   }
 
    return (
-      <div className="chat_list active_chat"> {/* if chating */}
+      <div className={`chat_list ${  currentChat === uid  ? "active_chat" : "" }`} onClick={ handleSelect }>
          <div className="chat_people">
             <div className="chat_img"> 
                <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
             </div>
             <div className="chat_ib">
                   <h5>
-                     { email }
-                     <span className="chat_date">{  updatedAt.split("T")[0] }</span> {/* if chating */}
+                     { nickname }
+                     { currentChat === uid && <span className="chat_date">{ moment( updatedAt ).format("DD/MM/YYYY") }</span> }
                      
                   </h5>
                   { online ? 
@@ -20,8 +29,10 @@ export const ChatItem = ( props ) => {
                      <span className="text-danger">Offline</span>
                   }
                   
-                  {/* <p>Test, which is a new approach to have all solutions
-                     astrology under one roof.</p> */}
+                  { currentChat === uid &&
+                     <p>Test, which is a new approach to have all solutions
+                     astrology under one roof.</p> 
+                  }
             </div>
          </div>
       </div>

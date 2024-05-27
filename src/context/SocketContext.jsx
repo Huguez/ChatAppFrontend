@@ -39,9 +39,14 @@ export const SocketProvider = ( props ) => {
 
     useEffect( () => {
         socket?.on( "list-users", ( users ) => {
-            
             dispatch( { type: typesChat.loadedUsers, payload: { users } } )
         } )
+    }, [ socket, dispatch ] )
+
+    useEffect( () => {
+		socket?.on( "send-msg", ( msg ) => {
+			dispatch( { type: typesChat.newMsg, payload: msg } )
+		} )
     }, [ socket, dispatch ] )
 
     return (

@@ -3,7 +3,7 @@ import { chatReducer } from "./chatReducer"
 
 const initVal = {
    uid: null,
-   currentChat: "",
+   currentChat: null,
    users: [],
    messages: []
 }
