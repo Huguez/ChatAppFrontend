@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { createContext } from 'react';
 import { useInitSocket } from '@/hooks'
+import { useChat } from '@/context'
+import { typesChat } from '@/types'
 import { useAuth } from "."
 
 const initVal = {
@@ -20,6 +22,7 @@ export const SocketProvider = ( props ) => {
 
     const { socket, online, connectSocket, disconnectSocket } = useInitSocket( socketUrl );    
     const { user } = useAuth()
+    const { dispatch } = useChat()
 
     useEffect( () => {
         if ( user.uid ) {
@@ -36,9 +39,10 @@ export const SocketProvider = ( props ) => {
 
     useEffect( () => {
         socket?.on( "list-users", ( users ) => {
-            console.log( users );
+            
+            dispatch( { type: typesChat.loadedUsers, payload: { users } } )
         } )
-    }, [ socket ] )
+    }, [ socket, dispatch ] )
 
     return (
         <SocketContext.Provider value={{ socket, online }} { ...props } />
