@@ -1,14 +1,18 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '@/context'
+
+import { typesChat } from '@/types';
+import { useAuth, useChat } from '@/context'
 
 export const SearchBox = () => {
    
+   const { dispatch  } = useChat()
    const { logout } = useAuth()
    const navigate = useNavigate()
    
    const handleLogout = () => {
       logout()
+      dispatch( { type: typesChat.emptyChatState  } )
       navigate("/auth/login")
    }
 

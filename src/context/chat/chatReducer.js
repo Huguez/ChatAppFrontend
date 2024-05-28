@@ -19,8 +19,18 @@ export const chatReducer = ( state, action ) => {
          if ( state.currentChat === action.payload.from || state.currentChat === action.payload.to ) {
             return { ...state, messages: [ ...state.messages, action.payload ] }
          }
-         
          return { ...state };
+      case typesChat.setChat:
+         
+         return { ...state, messages: [ ...action.payload.allChat ] }
+      case typesChat.emptyChatState:
+         
+         return {
+            uid: null,
+            currentChat: null,
+            users: [],
+            messages: []
+         }
       default:
          return { ...state };
    }

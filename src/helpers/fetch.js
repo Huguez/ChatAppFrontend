@@ -6,13 +6,18 @@ export const myFetch = async ( endpoint, data, method = "GET",  withToken = fals
    
    const headers = {
       'Content-type': 'application/json',
-      ...( withToken ? {'x-token': localStorage.getItem( "x-token" ) } : {} )
+      ...( withToken ? {'x-token': localStorage.getItem( "x-token" ) } : {} ),
    }
 
    if ( method === "GET" ) {
-      const resp = await fetch( url, headers )
+      
+      const resp = await fetch( url, {
+         method,
+         headers
+      } )
       return await resp.json()
    } else {   
+
       const resp = await fetch( url, {
          method,
          headers,

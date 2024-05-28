@@ -36,7 +36,7 @@ export const SocketProvider = ( props ) => {
             disconnectSocket()
         }
     }, [ user ] )
-
+    
     useEffect( () => {
         socket?.on( "list-users", ( users ) => {
             dispatch( { type: typesChat.loadedUsers, payload: { users } } )

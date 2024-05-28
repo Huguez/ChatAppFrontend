@@ -204,6 +204,25 @@ img {
 .msg_history {
    height: 90%;
    overflow-y: auto;
+   padding-right: 5px;
+}
+
+.msg_history::-webkit-scrollbar {
+   width: 10px;
+}
+
+.msg_history::-webkit-scrollbar-track {
+   background: transparent; 
+}
+
+.msg_history::-webkit-scrollbar-thumb {
+   background: #ccc;
+   border-radius: 15px; 
+}
+ 
+ /* Handle on hover */
+.msg_history::-webkit-scrollbar-thumb:hover {
+   background: #ccc; 
 }
 
 .extra_space {

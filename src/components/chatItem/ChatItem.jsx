@@ -2,14 +2,20 @@ import React from 'react'
 import { typesChat } from "@/types";
 import moment from "moment"
 import { useChat } from '@/context'
+import { myFetch } from "@/helpers"
 
 export const ChatItem = ( props ) => {
    const { uid, nickname, updatedAt, online } = props
 
    const { chatState:{ currentChat }, dispatch } = useChat()
 
-   const handleSelect = () => {
+   const handleSelect = async  () => {
       dispatch( { type: typesChat.selectChat, payload: { chat: uid } } )
+
+      const { ok, chat } = await myFetch( `message/chatByUser/${ uid }`, {}, "GET", true )
+
+      dispatch( { type: typesChat.setChat, payload: { allChat: ok ? chat : []  } } )
+
    }
 
    return (

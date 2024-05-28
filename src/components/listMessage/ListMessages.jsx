@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useChat, useAuth } from "@/context"
 import moment from 'moment';
 
@@ -7,7 +7,9 @@ export const ListMessages = () => {
 
    const { chatState: { messages }  } = useChat()
    const { user } = useAuth()
-   console.log( messages );
+   const listMsg = useRef()
+
+   // console.log( messages );
 
    const getDateMsg = ( param )  => {
       
@@ -16,7 +18,11 @@ export const ListMessages = () => {
       return fecha
    }
 
-   return <div className="msg_history">
+   useEffect( () => {
+      listMsg.current.scrollTo( 0, listMsg.current.scrollHeight )
+   }, [ messages ] )
+
+   return <div className="msg_history" ref={ listMsg } >
       {
          messages.map( ( { id, message, to, createdAt }, index ) => (
             ( to === user.uid  ) ?
