@@ -5,11 +5,11 @@ export const useInitSocket = ( serverPath ) => {
     
     const [ socket, setSocket ] = useState( null )
     const [ online, setOnline ] = useState(false);
-
+    
     const connectSocket = useCallback( () => {
         
         const token = localStorage.getItem("x-token")
-        
+
         const socketTemp = io.connect( serverPath, { 
             transports: ['websocket'], 
             autoConnect: true, 

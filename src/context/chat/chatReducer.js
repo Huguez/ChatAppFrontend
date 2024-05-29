@@ -17,8 +17,10 @@ export const chatReducer = ( state, action ) => {
       case typesChat.newMsg:
 
          if ( state.currentChat === action.payload.from || state.currentChat === action.payload.to ) {
+            
             return { ...state, messages: [ ...state.messages, action.payload ] }
          }
+
          return { ...state };
       case typesChat.setChat:
          

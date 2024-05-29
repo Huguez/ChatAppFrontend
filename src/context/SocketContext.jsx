@@ -27,12 +27,20 @@ export const SocketProvider = ( props ) => {
     useEffect( () => {
         if ( user.uid ) {
             connectSocket()
-        }else{
         }
+
+        return () => {
+            disconnectSocket()
+        }
+
     }, [ user ] )
 
     useEffect( () => {
         if ( !user.uid ) {
+            disconnectSocket()
+        }
+
+        return () => {
             disconnectSocket()
         }
     }, [ user ] )
@@ -45,6 +53,7 @@ export const SocketProvider = ( props ) => {
 
     useEffect( () => {
 		socket?.on( "send-msg", ( msg ) => {
+            console.log( "send-msg" );
 			dispatch( { type: typesChat.newMsg, payload: msg } )
 		} )
     }, [ socket, dispatch ] )

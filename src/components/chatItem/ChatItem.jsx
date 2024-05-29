@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { typesChat } from "@/types";
 import moment from "moment"
 import { useChat } from '@/context'
@@ -6,8 +6,9 @@ import { myFetch } from "@/helpers"
 
 export const ChatItem = ( props ) => {
    const { uid, nickname, updatedAt, online } = props
-
    const { chatState:{ currentChat }, dispatch } = useChat()
+   
+   const [ lastMsg, setLastMsg ] = useState( "" )
 
    const handleSelect = async  () => {
       dispatch( { type: typesChat.selectChat, payload: { chat: uid } } )
@@ -15,6 +16,8 @@ export const ChatItem = ( props ) => {
       const { ok, chat } = await myFetch( `message/chatByUser/${ uid }`, {}, "GET", true )
 
       dispatch( { type: typesChat.setChat, payload: { allChat: ok ? chat : []  } } )
+      
+      // setLastMsg( chat[chat.length-1].message )
 
    }
 
@@ -36,8 +39,7 @@ export const ChatItem = ( props ) => {
                   }
                   
                   { currentChat === uid &&
-                     <p>Test, which is a new approach to have all solutions
-                     astrology under one roof.</p> 
+                     <p>{ lastMsg }</p> 
                   }
             </div>
          </div>
