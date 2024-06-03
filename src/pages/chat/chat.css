@@ -248,3 +248,8 @@ textarea {
    width: 60%;
    text-align: center;
 }
+
+.notification {
+   background: #7674FE !important;
+   
+}

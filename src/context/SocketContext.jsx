@@ -52,8 +52,8 @@ export const SocketProvider = ( props ) => {
     }, [ socket, dispatch ] )
 
     useEffect( () => {
+        console.log( "send" );
 		socket?.on( "send-msg", ( msg ) => {
-            console.log( "send-msg" );
 			dispatch( { type: typesChat.newMsg, payload: msg } )
 		} )
     }, [ socket, dispatch ] )

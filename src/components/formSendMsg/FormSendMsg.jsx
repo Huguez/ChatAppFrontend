@@ -20,7 +20,7 @@ export const FormSendMsg = () => {
       if ( msg.trim().length === 0 ) {
          return;
       }
-
+      
       socket.emit( "send-msg", {
          to: currentChat,
          from: user.uid,

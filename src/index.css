@@ -332,6 +332,22 @@ iframe {
   background-color: grey;
 }
 
+.notificationMsg{
+  position: relative;
+}
+
+.notificationMsg .badge {
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  padding: 2px 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 

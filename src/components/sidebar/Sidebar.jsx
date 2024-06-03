@@ -10,7 +10,9 @@ export const Sidebar  = () => {
    
    return <div className="inbox_chat">
       {
-         users.filter( u => u.uid !== user.uid ).map( ( user, index ) => <ChatItem { ...user } key={ `${index}-${ user.email }` }/> )
+         users.filter( u => u.uid !== user.uid ).map( 
+            ( user, index ) => <ChatItem { ...user } key={ `${index}-${ user.email }` 
+         }/> )
       }
    </div>
 }
